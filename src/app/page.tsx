@@ -3,6 +3,6 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <p>Hello Next App Learner ahmed raza!</p>
+    <p>Hello Next App Learner umer</p>
   );
 }
