@@ -1,7 +1,13 @@
-import Link from "next/link";
+'use client'
+
 import React from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import classnames from 'classnames';
 
 const NavBar = () => {
+
+  const currentRoute =  usePathname();
   const menu_links = [
     {
       href_attribute: "/",
@@ -10,7 +16,7 @@ const NavBar = () => {
     {
       href_attribute: "/issue",
       link_text: "Issues",
-    },
+    }
   ];
 
   return (
@@ -18,7 +24,14 @@ const NavBar = () => {
       <Link href="/">Issue Tracker</Link>
       <ul className="flex justify-between">
         {menu_links.map((menuItem) => (
-          <li className="px-4 py-4 hover:text-cyan-300">
+          <li key={menuItem.href_attribute} className={ 
+            classnames({
+              'px-4': true,
+              'py-4': true,
+              'hover:text-cyan-300': true,
+              'text-yellow-300': currentRoute === menuItem.href_attribute,
+              'text-white-300': currentRoute !== menuItem.href_attribute
+            })}>
             <Link href={menuItem.href_attribute || ""}>
               {menuItem.link_text}
             </Link>
